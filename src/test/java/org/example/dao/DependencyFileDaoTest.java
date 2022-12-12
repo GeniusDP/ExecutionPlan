@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("file dependency dao testing")
 class DependencyFileDaoTest {
 
   Map<Integer, Set<Integer>> sampleDependencies;
@@ -33,7 +34,7 @@ class DependencyFileDaoTest {
 
 
   @Test
-  @DisplayName("file dependency dao reading ok")
+  @DisplayName("read ok")
   public void testDefaultReading() {
     DependencyDao dao = new DependencyFileDao(sourceDirectoryPathPrefix + "input0.txt");
     DependencyGraph provided = dao.readDependencyGraph();
@@ -43,11 +44,10 @@ class DependencyFileDaoTest {
 
 
   @Test
-  @DisplayName("file dependency dao input file not exists")
+  @DisplayName("input file not exists")
   public void testInputFileNotFound() {
     DependencyDao dao = new DependencyFileDao(sourceDirectoryPathPrefix + "non-existing-file.txt");
     org.junit.jupiter.api.Assertions.assertThrows(InputFileNotFoundException.class, dao::readDependencyGraph);
   }
-
 
 }
